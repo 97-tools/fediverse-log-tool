@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fediverseログ整形ツール</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="tool-shell">
+    <header class="tool-hero">
+      <p class="tool-kicker">Fediverse Log Formatter</p>
+      <h1>Fediverseログ整形ツール</h1>
+      <p>Mastodon系outbox.jsonやMisskey系notes.jsonを読み込み、HTML配布用・ふせったー貼り付け用に整形します。処理はブラウザ内だけで行われます。</p>
+    </header>
+
+    <section class="tool-panel">
+      <h2>1. JSONを読み込む</h2>
+      <label class="file-drop">
+        <input id="jsonFile" type="file" accept=".json,application/json">
+        <span>JSONを選択</span>
+      </label>
+      <textarea id="jsonPaste" rows="8" placeholder="または、JSONの中身をここに貼り付け"></textarea>
+      <button id="loadPaste" type="button">貼り付けたJSONを読み込む</button>
+      <p id="loadStatus" class="status-text">未読み込み</p>
+    </section>
+
+    <section class="tool-panel">
+      <h2>2. 出力設定</h2>
+      <div class="form-grid">
+        <label>含める語句<input id="includeWords" type="text" placeholder="例：ご飯、猫"></label>
+        <label>除外する語句<input id="excludeWords" type="text" placeholder="例：秘密、ネタバレ"></label>
+        <label>除外する投稿ID<input id="excludeIds" type="text" placeholder="カンマ区切り"></label>
+        <label>最大件数<input id="limitCount" type="number" min="1" value="300"></label>
+      </div>
+      <fieldset class="option-box">
+        <legend>CWの出し方</legend>
+        <label><input type="radio" name="cwMode" value="fold" checked> HTMLではたためる</label>
+        <label><input type="radio" name="cwMode" value="flat"> HTMLでもたためない</label>
+      </fieldset>
+      <fieldset class="option-box">
+        <legend>追加表示</legend>
+        <label><input id="showLinks" type="checkbox" checked> 元投稿リンクを入れる</label>
+        <label><input id="showMedia" type="checkbox" checked> 画像リンクを入れる</label>
+        <label><input id="showTags" type="checkbox" checked> タグを入れる</label>
+        <label><input id="showBoosts" type="checkbox"> ブースト・リノートのみの投稿も含める</label>
+      </fieldset>
+      <button id="renderBtn" type="button">整形する</button>
+    </section>
+
+    <section class="tool-panel">
+      <h2>3. プレビュー</h2>
+      <p id="resultStatus" class="status-text">まだ出力されていません。</p>
+      <div id="preview" class="log-preview"></div>
+    </section>
+
+    <section class="tool-panel actions-panel">
+      <h2>4. 書き出し</h2>
+      <div class="button-row">
+        <button id="downloadHtml" type="button">HTMLを保存</button>
+        <button id="copyHtml" type="button">HTMLをコピー</button>
+        <button id="copyFusetter" type="button">ふせったー用テキストをコピー</button>
+        <button id="downloadTxt" type="button">TXTを保存</button>
+      </div>
+      <textarea id="outputText" rows="12" readonly placeholder="ここに出力HTMLが入ります"></textarea>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
