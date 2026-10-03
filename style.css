@@ -86,3 +86,9 @@ button:hover { border-color: var(--accent); background: var(--accent-soft); }
   .tool-panel { padding: 18px; border-radius: 20px; }
   .form-grid { grid-template-columns: 1fr; }
 }
+
+.tool-shell>a,.tool-shell>p:first-child a{color:#6a3caf;text-underline-offset:4px}
+.tool-kicker{font-size:13px;font-weight:600;letter-spacing:.22em}
+h1,h2{font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",sans-serif}
+h2{font-weight:800;letter-spacing:.04em}
+h2::after{content:"";display:block;width:34px;height:3px;margin-top:7px;border-radius:999px;background:linear-gradient(90deg,#e58c9b,#f0b36a)}
